@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 /**
  * @author
@@ -7,51 +7,51 @@ import axios from "axios";
  **/
 
 const Section = (props) => {
-  const [data, SetData] = useState(null);
-  const [sellBtc, setSellBtc] = useState(null);
-  const [sellEther, setSellEther] = useState(null);
-  const [sellLit, setSellLit] = useState(null);
-  const [sellDoge, setSellDoge] = useState(null);
-  const [sellBtcCash, setSellBtcCash] = useState(null);
+    const [data, SetData] = useState(null)
+    const [sellBtc, setSellBtc] = useState(null)
+    const [sellEther, setSellEther] = useState(null)
+    const [sellLit, setSellLit] = useState(null)
+    const [sellDoge, setSellDoge] = useState(null)
+    const [sellBtcCash, setSellBtcCash] = useState(null)
 
-  useEffect(() => {
-    const fetch = async () => {
-      await axios
-        .get("https://api.alternative.me/v2/ticker/")
-        .then((res) => {
-          let myMap = new Map(Object.entries(res.data.data));
-          console.log(myMap);
-          let data = [];
-          for (const value of myMap.values()) {
-            data.push(value);
-          }
-          SetData(data);
-          console.log("fetching");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-    fetch();
-  }, []);
-  useEffect(() => {
-    const fetch = async () => {
-      await axios
-        .get("https://api.alternative.me/v2/ticker/")
-        .then((res) => {
-          let myMap = new Map(Object.entries(res.data.data));
-          console.log(myMap);
-          let data = [];
-          for (const value of myMap.values()) {
-            data.push(value);
-          }
-          SetData(data);
-          console.log("fetching");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
+    useEffect(() => {
+        const fetch = async () => {
+            await axios
+                .get('https://api.alternative.me/v2/ticker/')
+                .then((res) => {
+                    let myMap = new Map(Object.entries(res.data.data))
+                    console.log(myMap)
+                    let data = []
+                    for (const value of myMap.values()) {
+                        data.push(value)
+                    }
+                    SetData(data)
+                    console.log('fetching')
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
+        }
+        fetch()
+    }, [])
+    useEffect(() => {
+        const fetch = async () => {
+            await axios
+                .get('https://api.alternative.me/v2/ticker/')
+                .then((res) => {
+                    let myMap = new Map(Object.entries(res.data.data))
+                    console.log(myMap)
+                    let data = []
+                    for (const value of myMap.values()) {
+                        data.push(value)
+                    }
+                    SetData(data)
+                    console.log('fetching')
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
+        }
 
     const timer = setInterval(() => {
       fetch();
@@ -178,4 +178,4 @@ const Section = (props) => {
   );
 };
 
-export default Section;
+export default Section

@@ -227,18 +227,26 @@ $text-color-primary: rgb(24, 23, 23);
               background-color: $primary-color;
               outline: none;
             }
-            &::-webkit-outer-spin-button,
-            &::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
+            @media (max-width: 1080px) {
+                .image {
+                    width: 7rem;
+                    height: 7rem;
+                }
             }
+            @media (max-width: 720px) {
+                flex-direction: column;
+                height: auto;
+                .details {
+                    padding: 0;
+                    button {
+                        height: 3rem;
+                        width: 100%;
+                    }
+                }
+            }
+        }
 
-            /* Firefox */
-            &[type="number"] {
-              -moz-appearance: textfield;
-            }
-          }
-          .rates {
+        .section {
             flex-grow: 1;
             margin-top: 1rem;
             display: flex;
@@ -290,9 +298,6 @@ $text-color-primary: rgb(24, 23, 23);
             &:hover {
               transform: translateY(-0.1rem);
             }
-          }
         }
-      }
     }
-  }
 }
