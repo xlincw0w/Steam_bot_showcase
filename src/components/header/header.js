@@ -26,7 +26,7 @@ const Header = (props) => {
                     Buy/sell <b>TF keys</b> with <b>Bitcoin</b>, <b>Ethereum</b>, <b>Litcoin</b>, <b>Dogecoin</b>, <b>Bitcoin cash</b>, <b>Cardano</b>, <b>Polkadot</b>, <b>USD</b>,
                     it is easy, safe and reliable !
                 </p>
-                <button>Add friends</button>
+                <button onClick={() => window.open('https://steamcommunity.com/profiles/76561198822653631', '_blank')}>Add friends</button>
             </div>
             <div className='image'>
                 <Bitcoin />
