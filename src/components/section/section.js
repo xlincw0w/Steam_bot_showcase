@@ -13,6 +13,11 @@ const Section = (props) => {
     const [sellLit, setSellLit] = useState(null)
     const [sellDoge, setSellDoge] = useState(null)
     const [sellBtcCash, setSellBtcCash] = useState(null)
+    const [buyBtc, setBuyBtc] = useState(null)
+    const [buyEther, setBuyEther] = useState(null)
+    const [buyLit, setBuyLit] = useState(null)
+    const [buyDoge, setBuyDoge] = useState(null)
+    const [buyBtcCash, setBuyBtcCash] = useState(null)
 
     useEffect(() => {
         const fetch = async () => {
@@ -57,12 +62,27 @@ const Section = (props) => {
             fetch()
         }, 1000000)
     }, [])
-    const handleChangeSell = (amount) => {
-        setSellBtc(amount / data[0].quotes.USD.price)
-        setSellEther(amount / data[11].quotes.USD.price)
-        setSellDoge(amount / data[3].quotes.USD.price)
-        setSellLit(amount / data[2].quotes.USD.price)
-        setSellBtcCash(amount / data[32].quotes.USD.price)
+    const handleChangeSell = async (amount) => {
+        const key = await axios.get('https://hachi-client-bot.herokuapp.com/keyprice', (res) => {
+            return res.data
+        })
+        console.log(key.data)
+
+        setSellBtc((key.data.KEY_PRICE_SELL * amount) / data[0].quotes.USD.price)
+        setSellEther((key.data.KEY_PRICE_SELL * amount) / data[11].quotes.USD.price)
+        setSellDoge((key.data.KEY_PRICE_SELL * amount) / data[3].quotes.USD.price)
+        setSellLit((key.data.KEY_PRICE_SELL * amount) / data[2].quotes.USD.price)
+        setSellBtcCash((key.data.KEY_PRICE_SELL * amount) / data[32].quotes.USD.price)
+    }
+    const handleChangeBuy = async (amount) => {
+        const key = await axios.get('https://hachi-client-bot.herokuapp.com/keyprice', (res) => {
+            return res.data
+        })
+        setBuyBtc((key.data.KEY_PRICE_BUY * amount) / data[0].quotes.USD.price)
+        setBuyEther((key.data.KEY_PRICE_BUY * amount) / data[11].quotes.USD.price)
+        setBuyDoge((key.data.KEY_PRICE_BUY * amount) / data[3].quotes.USD.price)
+        setBuyLit((key.data.KEY_PRICE_BUY * amount) / data[2].quotes.USD.price)
+        setBuyBtcCash((key.data.KEY_PRICE_BUY * amount) / data[32].quotes.USD.price)
     }
     return (
         <section className='section'>
@@ -129,17 +149,21 @@ const Section = (props) => {
                             <h4 className='coins'> ADA</h4>
                             <h4 className='coins'>DOT</h4>
                         </div>
-                        <div className='prices-container'>
-                            <h4>0.055111000000</h4>
-                            <h4>0.055111000000</h4>
-                            <h4>0.055111000000</h4>
-                            <h4>0.055111000000</h4>
-                            <h4>0.055111000000</h4>
-                        </div>
+                        <buy className='prices-container'>
+                            {data ? (
+                                <>
+                                    <h4> {buyBtc ? buyBtc.toFixed(8) : (1 / data[0].quotes.USD.price).toFixed(8)}</h4>
+                                    <h4>{buyEther ? buyEther.toFixed(8) : (1 / data[11].quotes.USD.price).toFixed(8)}</h4>
+                                    <h4> {buyDoge ? buyDoge.toFixed(8) : (1 / data[3].quotes.USD.price).toFixed(8)}</h4>
+                                    <h4> {buyLit ? buyLit.toFixed(8) : (1 / data[2].quotes.USD.price).toFixed(8)}</h4>
+                                    <h4>{buyBtcCash ? buyBtcCash.toFixed(8) : (1 / data[32].quotes.USD.price).toFixed(8)}</h4>
+                                </>
+                            ) : null}
+                        </buy>
                     </div>
                     <div className='head'>
                         <h3>
-                            If you buy <input type='number' />$
+                            If you buy <input type='number' onChange={(e) => handleChangeBuy(e.target.value)} />
                         </h3>
                     </div>
 
