@@ -154,6 +154,20 @@ $text-color-primary: rgb(24, 23, 23);
             min-height: 100vh;
             width: 100%;
             padding: 0 3.25rem;
+            .key {
+                position: absolute;
+                bottom: -15rem;
+                right: 5rem;
+                z-index: 10;
+                width: 15rem;
+                height: 15rem;
+                background-image: url('./assets/key.png');
+                background-size: cover;
+                background-position: center;
+                @media (max-width: 720px) {
+                    display: none;
+                }
+            }
 
             .title {
                 width: 100%;

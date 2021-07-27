@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+let key = require('./key.png')
 
 /**
  * @author
@@ -86,6 +87,7 @@ const Section = (props) => {
     }
     return (
         <section className='section'>
+            <div className='key'></div>
             <div className='title'>
                 <h1>Key Stocks</h1>
             </div>
@@ -128,11 +130,11 @@ const Section = (props) => {
                             <h4 className='coins'>DOT</h4>
                         </div>
                         <div className='prices-container'>
-                            <h4>0.0551110000000000</h4>
-                            <h4>0.0551110000000000</h4>
-                            <h4>0.0551110000000000</h4>
-                            <h4>0.0551110000000000</h4>
-                            <h4>0.0551110000000000</h4>
+                            <h4>0.00000247 </h4>
+                            <h4>0.001218 </h4>
+                            <h4>1.5 </h4>
+                            <h4>0.2 </h4>
+                            <h4>0.02 </h4>
                         </div>
                     </div>
                     <div className='head'>
